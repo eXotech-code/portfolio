@@ -1,0 +1,14 @@
+@import './styles/_colors.scss';
+@import './styles/_text.scss';
+@import './styles/_sizings.scss';
+
+.projects {
+    padding: $standardPadding $standardPadding 2rem;
+    display: grid;
+    grid-template-columns: 25% 25% auto;
+    background-color: $ui-background-gray-90;
+}
+
+.projects-section-name-container {
+    @include section-name-container;
+}

@@ -1,0 +1,9 @@
+# npm stuff
+package.json
+yarn.lock
+
+# eslint
+.eslintcache
+
+# markdown files
+*.md

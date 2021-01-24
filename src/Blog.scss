@@ -1,0 +1,38 @@
+@import './styles/_colors.scss';
+@import './styles/_text.scss';
+@import './styles/_sizings.scss';
+
+.blog {
+    padding: $standardPadding $standardPadding 2rem;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    background-color: $ui-background-gray-10;
+}
+
+.blog-section-name-container {
+    @include section-name-container;
+}
+
+.blog-posts-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.blog-post {
+    margin-right: 1rem;
+    &:last-child {
+        margin: 0;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.blog-post-title {
+    @include heading-05;
+}
+
+.blog-post-long {
+    @include body-long-02;
+}

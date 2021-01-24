@@ -1,0 +1,24 @@
+@import '../styles/_colors.scss';
+@import '../styles/_text.scss';
+
+.link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem 1rem 0;
+    color: $interactive-01;
+    fill: $interactive-01;
+    cursor: pointer;
+}
+
+.link-text {
+    @include body-short-01;
+    margin-right: 2rem;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.link-icon {
+    width: 0.875rem;
+    height: auto;
+}

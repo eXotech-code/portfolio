@@ -1,0 +1,29 @@
+@import './styles/_colors.scss';
+@import './styles/_text.scss';
+@import './styles/_sizings.scss';
+
+.banner {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    color: $text-04;
+    background-color: #000000;
+    padding: $standardPadding;
+  }
+  
+  .banner-heading {
+    @include heading-06;
+  }
+  
+  .banner-tagline {
+    @include body-short-02;
+  }
+  
+  .banner-image {
+    width: 90%;
+    height: auto;
+  }
+  
+  .banner-image-container {
+    align-self: center;
+    justify-self: center;
+  }

@@ -1,0 +1,16 @@
+@import './styles/_colors.scss';
+@import './styles/_text.scss';
+@import './styles/_sizings.scss';
+
+.about {
+    @include section-template(25% 50% 25%, #fff);
+}
+
+.about-section-heading {
+    @include heading-05-semibold;
+    margin-top: 0;
+}
+
+.about-section-paragraph {
+    @include body-long-02;
+}

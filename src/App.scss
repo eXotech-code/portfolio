@@ -1,0 +1,30 @@
+@import './styles/_colors.scss';
+@import './styles/_text.scss';
+@import './styles/_sizings.scss';
+
+.header-global {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $standardPadding;
+  background-color:$ui-05;
+  color: $text-04;
+  vertical-align: middle;
+}
+
+.header-global-title {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 2em;
+  margin: 0;
+}
+
+.header-global-menu-button {
+  fill: $text-04;
+}
+
+// Stuff used everywhere
+.section-name {
+  @include heading-01;
+  margin-top: 0;
+}
