@@ -1,10 +1,25 @@
 import React from 'react';
 import './Projects.scss';
 
+class Kanban extends React.Component {
+	render() {
+		return (
+			<div className="projects-kanban">
+				<h1 className="projects-kanban-title">Progress</h1>
+				<h3 className="project-name">
+					{this.props.currentProjectSelected}
+				</h3>
+			</div>
+		);
+	}
+}
+
 class ProjectsGalleryItem extends React.Component {
 	render() {
 		return (
-			<div className="projects-gallery-item">
+			<div
+				className="projects-gallery-item"
+				onClick={() => this.props.handler(this.props.name)}>
 				<h3 className="project-name">{this.props.name}</h3>
 				<p className="project-description">{this.props.children}</p>
 				<div className="project-progress-bar">
@@ -27,6 +42,7 @@ class VerticalProjectsGrid extends React.Component {
 		return (
 			<div className="projects-vertical-grid">
 				<ProjectsGalleryItem
+					handler={this.props.handler}
 					name="Basic Multipurpose Backend"
 					progress="80">
 					Fast and modular website backend written in C++
@@ -37,6 +53,17 @@ class VerticalProjectsGrid extends React.Component {
 }
 
 class Projects extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { currentProjectSelected: 'Select' };
+
+		this.handler = this.handler.bind(this);
+	}
+
+	handler(projectName) {
+		this.setState({ currentProjectSelected: projectName });
+	}
+
 	render() {
 		return (
 			<div className="projects">
@@ -48,7 +75,10 @@ class Projects extends React.Component {
 						</p>
 					</div>
 				</div>
-				<VerticalProjectsGrid />
+				<VerticalProjectsGrid handler={this.handler} />
+				<Kanban
+					currentProjectSelected={this.state.currentProjectSelected}
+				/>
 			</div>
 		);
 	}

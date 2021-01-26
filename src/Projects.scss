@@ -17,4 +17,30 @@
 .projects-gallery-item {
 	background-color: $ui-01-gray-90;
 	padding: 1rem;
+	&:active {
+		outline: 2px solid #fff;
+	}
+	p {
+		@include body-short-01;
+	}
+}
+
+.project-name {
+	@include heading-02;
+	margin-top: 0;
+}
+
+.project-progress-bar {
+	height: 1rem;
+	background-color: $ui-03-gray-90;
+	span {
+		display: block;
+		height: 100%;
+		background-image: $gradient-blue60-teal50;
+	}
+}
+
+.project-progress {
+	margin-bottom: 0;
+	text-align: right;
 }
