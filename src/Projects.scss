@@ -13,3 +13,8 @@
 .projects-section-name-container {
 	@include section-name-container;
 }
+
+.projects-gallery-item {
+	background-color: $ui-01-gray-90;
+	padding: 1rem;
+}
