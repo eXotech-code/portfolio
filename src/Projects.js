@@ -7,7 +7,9 @@ class Kanban extends React.Component {
 			<div className="projects-kanban">
 				<h1 className="projects-kanban-title">Progress</h1>
 				<h3 className="project-name">
-					{this.props.currentProjectSelected}
+					{this.props.selectedProject
+						? this.props.selectedProject.name
+						: 'Loading data'}
 				</h3>
 			</div>
 		);
@@ -18,8 +20,12 @@ class ProjectsGalleryItem extends React.Component {
 	render() {
 		return (
 			<div
-				className="projects-gallery-item"
-				onClick={() => this.props.handler(this.props.name)}>
+				className={
+					this.props.isActive
+						? 'projects-gallery-item-active'
+						: 'projects-gallery-item'
+				}
+				onClick={() => this.props.handler(this.props.id)}>
 				<h3 className="project-name">{this.props.name}</h3>
 				<p className="project-description">{this.props.children}</p>
 				<div className="project-progress-bar">
@@ -39,15 +45,20 @@ class ProjectsGalleryItem extends React.Component {
  * a interactable box. */
 class VerticalProjectsGrid extends React.Component {
 	render() {
+		const projectsGalleryItems = this.props.projects.map((item) => (
+			<ProjectsGalleryItem
+				id={item.id}
+				key={item.id}
+				handler={this.props.handler}
+				isActive={this.props.isActive}
+				name={item.name}
+				progress={item.progress}>
+				{item.description}
+			</ProjectsGalleryItem>
+		));
+
 		return (
-			<div className="projects-vertical-grid">
-				<ProjectsGalleryItem
-					handler={this.props.handler}
-					name="Basic Multipurpose Backend"
-					progress="80">
-					Fast and modular website backend written in C++
-				</ProjectsGalleryItem>
-			</div>
+			<div className="projects-vertical-grid">{projectsGalleryItems}</div>
 		);
 	}
 }
@@ -55,13 +66,45 @@ class VerticalProjectsGrid extends React.Component {
 class Projects extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { currentProjectSelected: 'Select' };
+		this.state = {
+			projects: [
+				{
+					id: 0,
+					name: 'Basic Multipurpose Backend',
+					description:
+						'Fast and modular website backend written in C++',
+					progress: '80',
+				},
+				{
+					id: 1,
+					name: 'Portfolio',
+					description: 'Frontend for my portfolio written in React',
+					progress: '45',
+				},
+			],
+			selectedProject: undefined,
+		};
 
 		this.handler = this.handler.bind(this);
 	}
 
-	handler(projectName) {
-		this.setState({ currentProjectSelected: projectName });
+	componentDidMount() {
+		this.setState({ selectedProject: this.state.projects[0] });
+	}
+
+	// Function used to enable CSS 'active' class on card selection
+	isActive(id) {
+		console.log(id);
+		return this.state.selectedProject.id === id;
+	}
+
+	handler(id) {
+		if (!this.state.projects[id]) {
+			console.log(
+				'ERROR: ID of clicked project card does not correspond to any project data!'
+			);
+		}
+		this.setState({ selectedProject: this.state.projects[id] });
 	}
 
 	render() {
@@ -75,10 +118,13 @@ class Projects extends React.Component {
 						</p>
 					</div>
 				</div>
-				<VerticalProjectsGrid handler={this.handler} />
-				<Kanban
-					currentProjectSelected={this.state.currentProjectSelected}
+				<VerticalProjectsGrid
+					handler={this.handler}
+					isActive={this.isActive}
+					projects={this.state.projects}
+					selectedProject={this.state.selectedProject}
 				/>
+				<Kanban selectedProject={this.state.selectedProject} />
 			</div>
 		);
 	}

@@ -17,12 +17,15 @@
 .projects-gallery-item {
 	background-color: $ui-01-gray-90;
 	padding: 1rem;
-	&:active {
-		outline: 2px solid #fff;
-	}
+	margin-bottom: 1rem;
+	cursor: default;
 	p {
 		@include body-short-01;
 	}
+}
+
+.projects-gallery-item-active {
+	outline: 2px solid #fff;
 }
 
 .project-name {
