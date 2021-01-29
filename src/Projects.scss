@@ -57,4 +57,16 @@
 
 .projects-kanban-header {
 	display: flex;
+	justify-content: space-between;
+}
+
+.projects-kanban-title {
+	@include heading-05;
+	margin: 0;
+}
+
+.projects-kanban-project-name {
+	@include heading-02;
+	align-self: flex-end;
+	margin: 0;
 }

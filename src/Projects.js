@@ -7,7 +7,7 @@ class Kanban extends React.Component {
 			<div className="projects-kanban">
 				<div className="projects-kanban-header">
 					<h1 className="projects-kanban-title">Progress</h1>
-					<h3 className="project-name">
+					<h3 className="projects-kanban-project-name">
 						{this.props.selectedProject !== undefined
 							? this.props.projects[this.props.selectedProject]
 									.name
