@@ -14,14 +14,25 @@
 	@include section-name-container;
 }
 
+.projects-vertical-grid {
+	margin-right: 1rem;
+}
+
 .projects-gallery-item {
 	background-color: $ui-01-gray-90;
 	padding: 1rem;
 	margin-bottom: 1rem;
 	cursor: default;
+	&:hover {
+		background-color: $hover-ui-gray-90;
+	}
 	p {
 		@include body-short-01;
 	}
+}
+
+.projects-gallery-item:hover .project-progress-bar {
+	background-color: $hover-secondary-gray-90;
 }
 
 .projects-gallery-item-active {
