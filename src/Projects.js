@@ -5,12 +5,15 @@ class Kanban extends React.Component {
 	render() {
 		return (
 			<div className="projects-kanban">
-				<h1 className="projects-kanban-title">Progress</h1>
-				<h3 className="project-name">
-					{this.props.selectedProject
-						? this.props.selectedProject.name
-						: 'Loading data'}
-				</h3>
+				<div className="projects-kanban-header">
+					<h1 className="projects-kanban-title">Progress</h1>
+					<h3 className="project-name">
+						{this.props.selectedProject !== undefined
+							? this.props.projects[this.props.selectedProject]
+									.name
+							: 'Loading data'}
+					</h3>
+				</div>
 			</div>
 		);
 	}
@@ -18,13 +21,14 @@ class Kanban extends React.Component {
 
 class ProjectsGalleryItem extends React.Component {
 	render() {
+		let className = 'projects-gallery-item';
+		if (this.props.isActive(this.props.id)) {
+			className += '-active';
+		}
+
 		return (
 			<div
-				className={
-					this.props.isActive
-						? 'projects-gallery-item-active'
-						: 'projects-gallery-item'
-				}
+				className={className}
 				onClick={() => this.props.handler(this.props.id)}>
 				<h3 className="project-name">{this.props.name}</h3>
 				<p className="project-description">{this.props.children}</p>
@@ -86,16 +90,11 @@ class Projects extends React.Component {
 		};
 
 		this.handler = this.handler.bind(this);
+		this.isActive = this.isActive.bind(this);
 	}
 
 	componentDidMount() {
-		this.setState({ selectedProject: this.state.projects[0] });
-	}
-
-	// Function used to enable CSS 'active' class on card selection
-	isActive(id) {
-		console.log(id);
-		return this.state.selectedProject.id === id;
+		this.setState({ selectedProject: 0 });
 	}
 
 	handler(id) {
@@ -104,7 +103,11 @@ class Projects extends React.Component {
 				'ERROR: ID of clicked project card does not correspond to any project data!'
 			);
 		}
-		this.setState({ selectedProject: this.state.projects[id] });
+		this.setState({ selectedProject: id });
+	}
+
+	isActive(id) {
+		return id === this.state.selectedProject;
 	}
 
 	render() {
@@ -122,9 +125,11 @@ class Projects extends React.Component {
 					handler={this.handler}
 					isActive={this.isActive}
 					projects={this.state.projects}
-					selectedProject={this.state.selectedProject}
 				/>
-				<Kanban selectedProject={this.state.selectedProject} />
+				<Kanban
+					selectedProject={this.state.selectedProject}
+					projects={this.state.projects}
+				/>
 			</div>
 		);
 	}

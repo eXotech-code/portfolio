@@ -26,6 +26,13 @@
 
 .projects-gallery-item-active {
 	outline: 2px solid #fff;
+	background-color: $ui-01-gray-90;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	cursor: default;
+	p {
+		@include body-short-01;
+	}
 }
 
 .project-name {
@@ -46,4 +53,8 @@
 .project-progress {
 	margin-bottom: 0;
 	text-align: right;
+}
+
+.projects-kanban-header {
+	display: flex;
 }
