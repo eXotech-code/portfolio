@@ -28,8 +28,8 @@ class Blog extends React.Component {
 
         // Fire the request with fetch method.
         window.fetch(request)
-              .then((result) => {console.log("Got it.")},
-                    (error) => {console.log("Didn't get it.")});
+              .then(response => response.json())
+                .then(data => console.log(data));
     }
 
     render() {
