@@ -24,7 +24,7 @@ class Blog extends React.Component {
 
         // Create a new request object and pass some values to it.
         //const headers = new Headers({'Access-Control-Allow-Origin': '*'});
-        const request = new Request('http://localhost:5000/api/posts/3', {method: 'GET'});
+        const request = new Request('http://localhost/api/posts/3', {method: 'GET'});
 
         // Fire the request with fetch method.
         window.fetch(request)
