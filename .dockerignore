@@ -1,0 +1,7 @@
+node_modules
+build
+README.md
+LICENSE
+.git*
+.eslintcache
+*prettier*
