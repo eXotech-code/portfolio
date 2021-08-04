@@ -11,7 +11,7 @@ class Kanban extends React.Component {
 						{this.props.selectedProject !== undefined
 							? this.props.projects[this.props.selectedProject]
 									.name
-							: 'Loading data'}
+							: 'Loading data...'}
 					</h3>
 				</div>
 			</div>

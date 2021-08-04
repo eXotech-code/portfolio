@@ -17,19 +17,40 @@ class BlogPost extends React.Component {
     }
 }
 
+class BlogContent extends React.Component {
+    render() {
+        return(
+                <div className="blog-posts-container">
+                {this.props.posts.map((post) => (
+                    <BlogPost
+                    title={post.title}
+                    time={post.time}
+                    image={M1Banner}
+                    description={post.description}
+                    />
+                 ))}
+                </div>
+        );
+    }
+}
+
 class Blog extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { posts: []};
+    }
+
     componentDidMount() {
         /* Just a random fetch request to check if
          * I can connect from frontend to backend. */
 
-        // Create a new request object and pass some values to it.
-        //const headers = new Headers({'Access-Control-Allow-Origin': '*'});
-        const request = new Request('http://localhost/api/posts/3', {method: 'GET'});
+        const apiURL = 'http://172.31.0.229/api/posts/3'
 
         // Fire the request with fetch method.
-        window.fetch(request)
-              .then(response => response.json())
-                .then(data => console.log(data));
+        fetch(apiURL)
+                .then(response => response.json())
+                .then(data => this.setState({ posts: data }))
+                .catch(console.log)
     }
 
     render() {
@@ -44,26 +65,9 @@ class Blog extends React.Component {
                         </p>
                     </div>
                 </div>
-                <div className="blog-posts-container">
-                    <BlogPost 
-                    title="My thoughts about Macs with M1" 
-                    time="January 1, 1970 at 0:00"
-                    image={M1Banner}
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nulla libero, iaculis a dignissim quis, elementum sed quam. Aenean pharetra congue turpis, quis interdum arcu volutpat congue. Duis placerat urna vitae euismod volutpat."
-                    />
-                    <BlogPost 
-                    title="My thoughts about Macs with M1" 
-                    time="January 1, 1970 at 0:00"
-                    image={M1Banner}
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nulla libero, iaculis a dignissim quis, elementum sed quam. Aenean pharetra congue turpis, quis interdum arcu volutpat congue. Duis placerat urna vitae euismod volutpat."
-                    />
-                    <BlogPost 
-                    title="My thoughts about Macs with M1" 
-                    time="January 1, 1970 at 0:00"
-                    image={M1Banner}
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nulla libero, iaculis a dignissim quis, elementum sed quam. Aenean pharetra congue turpis, quis interdum arcu volutpat congue. Duis placerat urna vitae euismod volutpat."
-                    />
-                </div>
+                {this.state.posts.length
+                    ? <BlogContent posts={this.state.posts} />
+                    : <p>Loading posts...</p>}
             </div>
         );
     }
