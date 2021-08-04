@@ -18,6 +18,20 @@ class BlogPost extends React.Component {
 }
 
 class Blog extends React.Component {
+    componentDidMount() {
+        /* Just a random fetch request to check if
+         * I can connect from frontend to backend. */
+
+        // Create a new request object and pass some values to it.
+        //const headers = new Headers({'Access-Control-Allow-Origin': '*'});
+        const request = new Request('http://localhost/api/posts/3', {method: 'GET'});
+
+        // Fire the request with fetch method.
+        window.fetch(request)
+              .then(response => response.json())
+                .then(data => console.log(data));
+    }
+
     render() {
         return (
             <div className="blog">
