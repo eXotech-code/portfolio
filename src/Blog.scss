@@ -19,6 +19,8 @@
 }
 
 .blog-post {
+    display: flex;
+    flex-direction: column;
     margin-right: 1rem;
     &:last-child {
         margin: 0;
@@ -35,4 +37,15 @@
 
 .blog-post-long {
     @include body-long-02;
+}
+
+.blog-post-description {
+    @include body-long-02;
+    /* This is to prevent summing up
+     * margin of the title with this one
+     * in flexbox. */
+    margin-top: 0;
+    /* This is for the link to stay at the bottom
+     * the flexbox. */
+    margin-bottom: auto;
 }
