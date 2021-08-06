@@ -7,10 +7,10 @@ class BlogPost extends React.Component {
     render() {
         return (
             <div className="blog-post">
-                <h2 className="blog-post-title">{this.props.title}</h2>
                 <p className="blog-post-long">{this.props.time}</p>
                 <img src={this.props.image} alt="blog post cover"></img>
-                <p className="blog-post-long">{this.props.description}</p>
+                <h2 className="blog-post-title">{this.props.title}</h2>
+                <p className="blog-post-description">{this.props.description}</p>
                 <Link>Read this post</Link>
             </div>
         );
@@ -24,7 +24,7 @@ class BlogContent extends React.Component {
                 {this.props.posts.map((post) => (
                     <BlogPost
                     title={post.title}
-                    time={post.time}
+                    time={post.date}
                     image={M1Banner}
                     description={post.description}
                     />
