@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from './components/Button';
+import Button from '../../components/Button';
 import './Banner.scss';
-import bannerImage from './media/banner-image.webp';
+import bannerImage from '../../media/banner-image.webp';
 
 class Banner extends React.Component {
 	constructor(props) {
@@ -23,9 +23,7 @@ class Banner extends React.Component {
 		const outlineButtonWidth = this.outlineButton.sizeRef.current
 			.offsetWidth;
 
-		const width = primaryButtonWidth + outlineButtonWidth;
-
-		return width;
+		return primaryButtonWidth + outlineButtonWidth;
 	}
 
 	render() {

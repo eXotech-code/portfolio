@@ -1,17 +1,17 @@
 import React from 'react';
-import Link from './components/Link';
-import M1Banner from './media/M1-banner.webp';
+import Link from '../../components/Link';
+import M1Banner from '../../media/M1-banner.webp';
 import './Blog.scss';
 
 class BlogPost extends React.Component {
     render() {
         return (
             <div className="blog-post">
-                <p className="blog-post-long">{this.props.time}</p>
+                <p className="blog-post-long${">{this.props.time}</p>
                 <img src={this.props.image} alt="blog post cover"></img>
                 <h2 className="blog-post-title">{this.props.title}</h2>
                 <p className="blog-post-description">{this.props.description}</p>
-                <Link>Read this post</Link>
+                <Link link={`/post/${this.props.id}`}>Read this post</Link>
             </div>
         );
     }
@@ -23,6 +23,7 @@ class BlogContent extends React.Component {
                 <div className="blog-posts-container">
                 {this.props.posts.map((post) => (
                     <BlogPost
+                        id={post.id}
                     title={post.title}
                     time={post.date}
                     image={M1Banner}
@@ -44,7 +45,7 @@ class Blog extends React.Component {
         /* Just a random fetch request to check if
          * I can connect from frontend to backend. */
 
-        const apiURL = 'http://172.31.0.229/api/posts/3'
+        const apiURL = 'http://localhost/api/posts/3'
 
         // Fire the request with fetch method.
         fetch(apiURL)

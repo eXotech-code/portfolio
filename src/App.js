@@ -1,9 +1,8 @@
 import React from 'react';
+import {Switch, Route} from 'react-router-dom';
+import Home from './views/Home/Home';
+import BlogPost from './views/BlogPost/BlogPost';
 import { ReactComponent as MenuButton } from './media/menu-header-global.svg';
-import Banner from './Banner';
-import About from './About';
-import Blog from './Blog';
-import Projects from './Projects';
 import './App.scss';
 
 const App = () => {
@@ -13,10 +12,10 @@ const App = () => {
 				<p className="header-global-title">Jakub Piskiewicz</p>
 				<MenuButton className="header-global-menu-button" />
 			</header>
-			<Banner />
-			<About />
-			<Blog />
-			<Projects />
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route path="/post" component={BlogPost} />
+			</Switch>
 		</div>
 	);
 };
