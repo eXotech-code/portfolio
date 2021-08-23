@@ -4,7 +4,7 @@ class Body extends React.Component {
 	render() {
 		return (
 			<div className="blog-post-body">
-				{this.props.content}
+				{/*this.props.content*/}
 			</div>
 		)
 	}

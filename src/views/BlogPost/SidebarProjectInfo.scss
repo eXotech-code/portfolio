@@ -1,0 +1,19 @@
+@import '../../styles/text';
+@import '../../styles/sizings';
+
+.blog-post-sidebar-info {
+  @include section-name-container;
+
+  div {
+    grid-column-start: 2;
+  }
+
+  .blog-post-sidebar-info-name {
+    margin: 0 0 $standardPadding;
+    @include heading-01;
+  }
+
+  h3 {
+    @include heading-02;
+  }
+}

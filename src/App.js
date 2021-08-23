@@ -6,18 +6,22 @@ import { ReactComponent as MenuButton } from './media/menu-header-global.svg';
 import './App.scss';
 
 const App = () => {
-	return (
-		<div className="app">
-			<header className="header-global">
-				<p className="header-global-title">Jakub Piskiewicz</p>
-				<MenuButton className="header-global-menu-button" />
-			</header>
-			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route path="/post" component={BlogPost} />
-			</Switch>
-		</div>
-	);
+		return (
+			<div className="app">
+				<header className="header-global">
+					<p className="header-global-title">Jakub Piskiewicz</p>
+					<MenuButton className="header-global-menu-button" />
+				</header>
+				<Switch>
+					<Route path="/post">
+						<BlogPost />
+					</Route>
+					<Route path="/">
+						<Home />
+					</Route>
+				</Switch>
+			</div>
+		);
 };
 
 export default App;

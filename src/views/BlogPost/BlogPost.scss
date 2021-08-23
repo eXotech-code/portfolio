@@ -1,0 +1,9 @@
+@import '../../styles/text';
+@import '../../styles/sizings';
+
+.blog-post-content {
+  @include section-template(25% 50% 25%, #fff);
+  h3 {
+    margin-top: 0;
+  }
+}

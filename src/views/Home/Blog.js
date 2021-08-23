@@ -45,7 +45,7 @@ class Blog extends React.Component {
         /* Just a random fetch request to check if
          * I can connect from frontend to backend. */
 
-        const apiURL = 'http://localhost/api/posts/3'
+        const apiURL = '/api/posts/3'
 
         // Fire the request with fetch method.
         fetch(apiURL)

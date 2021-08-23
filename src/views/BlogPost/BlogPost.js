@@ -1,4 +1,5 @@
 import React from 'react';
+import './BlogPost.scss';
 import Banner from './Banner';
 import SidebarShare from './SidebarShare';
 import SidebarProjectInfo from './SidebarProjectInfo';
@@ -8,9 +9,11 @@ const BlogPost = () => {
 	return (
 		<div>
 			<Banner />
-			<SidebarShare />
-			<SidebarProjectInfo />
-			<Body />
+			<div className="blog-post-content">
+				<SidebarShare />
+				<Body />
+				<SidebarProjectInfo />
+			</div>
 		</div>
 	)
 }

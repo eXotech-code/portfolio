@@ -6,10 +6,10 @@ import './Link.scss';
 class Link extends React.Component {
     render() {
         return (
-            <div className="link">
-                <RouterLink to={this.props.link}>
-                    <p className="link-text">{this.props.children}</p>
-                    <RightArrow className="link-icon"/>
+            <div>
+                <RouterLink className='link' to={this.props.link ? this.props.link : '#'}>
+                    <p className='link-text'>{this.props.children}</p>
+                    <RightArrow className='link-icon' />
                 </RouterLink>
             </div>
         );

@@ -4,15 +4,17 @@
 .link {
     display: flex;
     align-items: center;
+    justify-items: center;
     padding: 1rem 1rem 1rem 0;
     color: $interactive-01;
     fill: $interactive-01;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .link-text {
     @include body-short-01;
-    margin-right: 2rem;
+    margin: 0 2rem 0 0;
     &:hover {
         text-decoration: underline;
     }

@@ -1,0 +1,26 @@
+@import '../../styles/colors';
+@import '../../styles/text';
+@import '../../styles/sizings';
+
+.blog-post-banner {
+  display: grid;
+  grid-template-rows: 2.5fr 1fr;
+  color: $text-04;
+  padding: $standardPadding;
+  background-size: cover;
+  background-position: 0 100%;
+  div {
+    grid-row-start: 2;
+  }
+}
+
+.blog-post-banner-tagline {
+  @include body-short-02;
+  margin: 0;
+}
+
+.blog-post-banner-heading {
+  font-size: 2.625em;
+  font-weight: 400;
+  margin: 0;
+}
