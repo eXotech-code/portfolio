@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Home from './views/Home/Home';
 import BlogPost from './views/BlogPost/BlogPost';
+import NotFound from './components/NotFound';
 import { ReactComponent as MenuButton } from './media/menu-header-global.svg';
 import './App.scss';
 
@@ -15,6 +16,9 @@ const App = () => {
 				<Switch>
 					<Route path="/post">
 						<BlogPost />
+					</Route>
+					<Route path="/404">
+						<NotFound />
 					</Route>
 					<Route path="/">
 						<Home />

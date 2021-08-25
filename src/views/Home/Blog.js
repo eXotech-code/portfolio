@@ -8,10 +8,10 @@ class BlogPost extends React.Component {
         return (
             <div className="blog-post">
                 <p className="blog-post-long${">{this.props.time}</p>
-                <img src={this.props.image} alt="blog post cover"></img>
+                <img src={this.props.image} alt="blog post cover" />
                 <h2 className="blog-post-title">{this.props.title}</h2>
                 <p className="blog-post-description">{this.props.description}</p>
-                <Link link={`/post/${this.props.id}`}>Read this post</Link>
+                <Link link={`/post/${this.props.id}`} data={this.props}>Read this post</Link>
             </div>
         );
     }
@@ -20,40 +20,24 @@ class BlogPost extends React.Component {
 class BlogContent extends React.Component {
     render() {
         return(
-                <div className="blog-posts-container">
+            <div className="blog-posts-container">
                 {this.props.posts.map((post) => (
                     <BlogPost
+                        key={post.id}
                         id={post.id}
-                    title={post.title}
-                    time={post.date}
-                    image={M1Banner}
-                    description={post.description}
+                        title={post.title}
+                        time={post.date}
+                        image={M1Banner}
+                        description={post.description}
+                        content={post.content}
                     />
                  ))}
-                </div>
+            </div>
         );
     }
 }
 
 class Blog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { posts: []};
-    }
-
-    componentDidMount() {
-        /* Just a random fetch request to check if
-         * I can connect from frontend to backend. */
-
-        const apiURL = '/api/posts/3'
-
-        // Fire the request with fetch method.
-        fetch(apiURL)
-                .then(response => response.json())
-                .then(data => this.setState({ posts: data }))
-                .catch(console.log)
-    }
-
     render() {
         return (
             <div className="blog">
@@ -66,8 +50,8 @@ class Blog extends React.Component {
                         </p>
                     </div>
                 </div>
-                {this.state.posts.length
-                    ? <BlogContent posts={this.state.posts} />
+                {this.props.posts.length
+                    ? <BlogContent posts={this.props.posts} />
                     : <p>Loading posts...</p>}
             </div>
         );
