@@ -3,6 +3,7 @@ import Banner from './Banner';
 import About from './About';
 import Blog from './Blog';
 import Projects from './Projects';
+import Footer from '../../components/Footer';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -28,6 +29,7 @@ class Home extends React.Component {
 				<About />
 				<Blog posts={this.state.posts} />
 				<Projects />
+				<Footer />
 			</div>
 		)
 	}

@@ -1,0 +1,60 @@
+@import '../styles/_colors';
+@import '../styles/_text';
+@import '../styles/_sizings';
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: $standardPadding;
+  @include body-short-01;
+  color: $text-04;
+  background-color: #000000;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    &:last-child {
+      a {
+        color: $interactive-01;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin: 0 0 $standardPadding;
+  }
+}
+
+.footer-section-title {
+  margin: 0 0 $standardPadding;
+  @include heading-02;
+}
+
+.footer-link {
+  margin-bottom: $standardPadding;
+}
+
+.footer-end {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: $standardPadding*2 $standardPadding $standardPadding;
+  background-color: #000000;
+
+  div {
+    display: inline-block;
+
+    svg {
+      height: 4rem;
+      width: auto;
+    }
+  }
+}

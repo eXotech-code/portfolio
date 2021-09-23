@@ -14,6 +14,9 @@ const App = () => {
 					<MenuButton className="header-global-menu-button" />
 				</header>
 				<Switch>
+					<Route path="/login">
+						{/*<Login />*/}
+					</Route>
 					<Route path="/post">
 						<BlogPost />
 					</Route>
