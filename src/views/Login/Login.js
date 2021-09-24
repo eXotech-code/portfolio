@@ -1,12 +1,13 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import Button from '../../components/Button';
-import {ReactComponent as RightArrow} from '../../media/arrow-right.svg'
-import Link from '../../components/Link';
 import Footer from '../../components/Footer';
+import {ReactComponent as RightArrow} from '../../media/arrow-right.svg'
+import './Login.scss';
 
 const Input = (props) => {
 	return (
-		<div className="input">
+		<div>
 			<label>
 				{props.name}
 				<input
@@ -27,12 +28,14 @@ class Form extends React.Component {
 
 		this.state = {
 			userInfo: { username: '', password: '' },
-			bad: false
+			bad: false,
+			redirect: false // This is for the 'Go back' button.
 		}
 
-		// To rid of the 'this is undefined' errors.
+		// To get rid of the 'this is undefined' errors.
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.redirect = this.redirect.bind(this);
 	}
 
 	// Handles change on input and saves it into state.
@@ -76,7 +79,6 @@ class Form extends React.Component {
 		return res.json();
 	}
 
-
 	/* Submits the POST request with x-www-form-urlencoded string
 	   containing login info and then saves API token into sessionStorage.
 	 */
@@ -98,36 +100,57 @@ class Form extends React.Component {
 			.catch(err => this.loginError(err))
 	}
 
+	redirect() {
+		this.setState({ redirect: true });
+	}
+
 	render() {
 		return (
-			<div className="login-form-box">
-				<h2>Please authenticate</h2>
-				<p>This mission is too important for me to allow you to jeopardize it.</p>
-				<div className="login-form-input-area">
-					<Input
-						name="Username"
-					   	value={this.state.username}
-					   	handler={this.handleChange}
-					   	placeholder="Probably something corny"
-					/>
-					<Input
-						pass={true}
-						name="Password"
-						value={this.state.password}
-						handler={this.handleChange}
-						placeholder="You didn't forget it, right?"
-					/>
+			<div className="login-form-holder">
+				<div className="login-form-box">
+
+					<div className="login-form-area">
+						<h2>Please authenticate</h2>
+						<p className="login-form-flavour">
+							This mission is too important for me to
+							allow you to jeopardize it.
+						</p>
+					</div>
+
+					<div className="login-form-area">
+						<Input
+							name="Username"
+							value={this.state.username}
+							handler={this.handleChange}
+							placeholder="Probably something corny"
+						/>
+						<Input
+							pass={true}
+							name="Password"
+							value={this.state.password}
+							handler={this.handleChange}
+							placeholder="You didn't forget it, right?"
+						/>
+						{
+							this.state.bad &&
+								<p className="login-error">
+									I'm sorry Dave, I'm afraid I can't do that.
+								</p>
+						}
+					</div>
+
+					<div className="login-form-button-area">
+						<Button variant="ghost" action={this.redirect}>
+							Go back
+						</Button>
+						{this.state.redirect && <Redirect push to={'/'} />}
+						<Button action={this.handleSubmit}>
+							Login
+							<RightArrow />
+						</Button>
+					</div>
+
 				</div>
-				<Button action={this.handleSubmit}>
-					Login
-					<RightArrow />
-				</Button>
-				<Link link="/" icon={false}>Go back</Link>
-				{this.state.bad &&
-					<p className="login-error">
-						I'm sorry Dave, I'm afraid I can't do that.
-					</p>
-				}
 			</div>
 		)
 	}
