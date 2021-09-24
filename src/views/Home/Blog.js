@@ -11,7 +11,7 @@ class BlogPost extends React.Component {
                 <img src={this.props.image} alt="blog post cover" />
                 <h2 className="blog-post-title">{this.props.title}</h2>
                 <p className="blog-post-description">{this.props.description}</p>
-                <Link link={`/post/${this.props.id}`} data={this.props}>Read this post</Link>
+                <Link link={`/post/${this.props.id}`} data={this.props} icon={true}>Read this post</Link>
             </div>
         );
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Home from './views/Home/Home';
 import BlogPost from './views/BlogPost/BlogPost';
+import Login from './views/Login/Login';
 import NotFound from './components/NotFound';
 import { ReactComponent as MenuButton } from './media/menu-header-global.svg';
 import './App.scss';
@@ -15,7 +16,7 @@ const App = () => {
 				</header>
 				<Switch>
 					<Route path="/login">
-						{/*<Login />*/}
+						<Login />
 					</Route>
 					<Route path="/post">
 						<BlogPost />
