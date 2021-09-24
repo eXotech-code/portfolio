@@ -4,17 +4,21 @@ import {ReactComponent as RightArrow} from '../../media/arrow-right.svg'
 import Link from '../../components/Link';
 import Footer from '../../components/Footer';
 
-class Input extends React.Component {
-	render() {
-		return (
-			<div className="input">
-				<label>
-					{this.props.name}
-					<input type="text" value={this.props.value} onChange={this.props.handler} name={this.props.name.toLowerCase()} placeholder={this.props.placeholder} />
-				</label>
-			</div>
-		)
-	}
+const Input = (props) => {
+	return (
+		<div className="input">
+			<label>
+				{props.name}
+				<input
+					type={props.pass ? "password" : "text"}
+					value={props.value}
+					onChange={props.handler}
+					name={props.name.toLowerCase()}
+					placeholder={props.placeholder}
+				/>
+			</label>
+		</div>
+	)
 }
 
 class Form extends React.Component {
@@ -53,6 +57,12 @@ class Form extends React.Component {
 	}
 
 	loginError(err) {
+		/* Remove token as it still might be valid.
+		   This is to prevent the ability of still using protected APIs
+		   by unintended users.
+		 */
+		sessionStorage.removeItem('token');
+
 		this.setState({ bad: true });
 
 		console.log(err);
@@ -93,44 +103,43 @@ class Form extends React.Component {
 			<div className="login-form-box">
 				<h2>Please authenticate</h2>
 				<p>This mission is too important for me to allow you to jeopardize it.</p>
+				<div className="login-form-input-area">
 					<Input
 						name="Username"
-					   value={this.state.username}
-					   handler={this.handleChange}
-					   placeholder="Probably something corny"
+					   	value={this.state.username}
+					   	handler={this.handleChange}
+					   	placeholder="Probably something corny"
 					/>
 					<Input
+						pass={true}
 						name="Password"
 						value={this.state.password}
 						handler={this.handleChange}
 						placeholder="You didn't forget it, right?"
 					/>
-					<Button action={this.handleSubmit}>
-						Login
-						<RightArrow />
-					</Button>
-					<Link link="/" icon={false}>Go back</Link>
-				{this.state.bad ?
+				</div>
+				<Button action={this.handleSubmit}>
+					Login
+					<RightArrow />
+				</Button>
+				<Link link="/" icon={false}>Go back</Link>
+				{this.state.bad &&
 					<p className="login-error">
 						I'm sorry Dave, I'm afraid I can't do that.
 					</p>
-				: null}
+				}
 			</div>
 		)
 	}
 }
 
-class Login extends React.Component {
-	render() {
-		return (
-			<div>
-				<div className="login-form-section">
-					<Form />
-				</div>
-				<Footer />
-			</div>
-		)
-	}
+const Login = () => {
+	return (
+		<div>
+			<Form />
+			<Footer />
+		</div>
+	)
 }
 
 export default Login;
