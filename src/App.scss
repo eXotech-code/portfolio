@@ -28,3 +28,7 @@
 	@include heading-01;
 	margin-top: 0;
 }
+
+input:focus, textarea:focus {
+	outline: 2px solid #fff;
+}
