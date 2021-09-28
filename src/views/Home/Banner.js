@@ -30,7 +30,7 @@ class Banner extends React.Component {
 		return (
 			<div className="banner">
 				<div>
-					<h1 className="banner-heading">Hello there</h1>{' '}
+					<h1 className="banner-heading">Hello there</h1>
 					{/* This text will change according to the country you"re in. */}
 					<p
 						className="banner-tagline"
