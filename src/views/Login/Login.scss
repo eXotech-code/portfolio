@@ -1,0 +1,71 @@
+@import '../../styles/_colors';
+@import '../../styles/_text';
+@import '../../styles/_sizings';
+
+.login-form-flavour {
+  color: $text-05-gray-100;
+  margin: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  @include label-01;
+  margin-bottom: 1.5rem;
+}
+
+input {
+  height: 2rem;
+  padding: $standardPadding/4 $standardPadding;
+  margin-top: $standardPadding/2;
+  @include body-long-01;
+  border: none;
+  background-color: $field-01-gray-100;
+  color: $text-01-gray-100;
+  box-shadow: 0 1px 0 #393939;
+
+  // This is used to prevent error message
+  // from changing position of other elements.
+  &:last-child {
+    position: relative;
+  }
+
+  &::placeholder {
+    color: $text-03-gray-100;
+  }
+}
+
+.login-error {
+  color: $text-error;
+  position: absolute;
+  margin: 0;
+}
+
+.login-form-area {
+  margin-bottom: $standardPadding*3;
+}
+
+.login-form-button-area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: $standardPadding*3.5;
+  margin-top: $standardPadding*10;
+}
+
+.login-form-box {
+  padding: $standardPadding;
+  background-color: $ui-background-gray-100;
+  color: $text-01-gray-100;
+  width: 20%;
+
+  h2 {
+    @include heading-05;
+    margin: 0 0 $standardPadding;
+  }
+}
+
+.login-form-holder {
+  background-color: $ui-background-gray-100;
+  background-image: url('/media/apollo-fade.webp');
+  background-size: cover;
+}

@@ -8,7 +8,7 @@ class Kanban extends React.Component {
 				<div className="projects-kanban-header">
 					<h1 className="projects-kanban-title">Progress</h1>
 					<h3 className="projects-kanban-project-name">
-						{this.props.selectedProject !== undefined
+						{this.props.selectedProject
 							? this.props.projects[this.props.selectedProject]
 									.name
 							: 'Loading data...'}
@@ -33,7 +33,7 @@ class ProjectsGalleryItem extends React.Component {
 				<h3 className="project-name">{this.props.name}</h3>
 				<p className="project-description">{this.props.children}</p>
 				<div className="project-progress-bar">
-					<span style={{ width: this.props.progress + '%' }}></span>
+					<span style={{ width: this.props.progress + '%' }}/>
 				</div>
 				<p className="project-progress">
 					{this.props.progress + '% done'}

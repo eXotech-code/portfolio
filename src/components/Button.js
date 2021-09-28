@@ -15,7 +15,9 @@ class Button extends React.Component {
       }
   
       return (
-        <button className={className} ref={this.sizeRef}>{this.props.children}</button>
+        <button className={className} ref={this.sizeRef} onClick={this.props.action}>
+            {this.props.children}
+        </button>
       );
     }
 }

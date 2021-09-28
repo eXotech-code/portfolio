@@ -38,7 +38,19 @@
 	line-height: 1.375em;
 }
 
+@mixin body-long-01 {
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.25em;
+}
+
 @mixin body-long-02 {
 	font-size: 1rem;
 	line-height: 1.5rem;
+}
+
+@mixin label-01 {
+	font-size: 0.75rem;
+	font-weight: 400;
+	line-height: 1em;
 }

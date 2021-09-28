@@ -1,6 +1,6 @@
-@import './styles/_colors.scss';
-@import './styles/_text.scss';
-@import './styles/_sizings.scss';
+@import './styles/_colors';
+@import './styles/_text';
+@import './styles/_sizings';
 
 .header-global {
 	display: flex;
@@ -27,4 +27,8 @@
 .section-name {
 	@include heading-01;
 	margin-top: 0;
+}
+
+input:focus, textarea:focus {
+	outline: 2px solid #fff;
 }
