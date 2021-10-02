@@ -1,4 +1,5 @@
 import React from 'react';
+import Toolbar from '../../components/Toolbar';
 import {ReactComponent as IconLanding} from '../../media/editor-icons/landing.svg';
 import {ReactComponent as IconLandingActive} from '../../media/editor-icons/landing-active.svg';
 import {ReactComponent as IconEditor} from '../../media/editor-icons/editor.svg';
@@ -17,38 +18,6 @@ const Banner = (props) => {
 	)
 }
 
-const Icon = (props) => {
-	const icons = [
-		<IconLanding />,
-		<IconEditor />,
-		<IconTrashCan />
-	];
-
-	const iconsActive = [
-		<IconLandingActive	/>,
-		<IconEditorActive />,
-		<IconTrashCanActive />
-	];
-
-	return (
-		<div className={"icon-holder" + (props.isActive && "-active")}>
-			{props.isActive ? iconsActive[props.index] : icons[props.index]}
-		</div>
-	);
-}
-
-/* Toolbar on the left side of the window
- * that switches between editor views. */
-const Toolbar = (props) => {
-	return (
-		<div className="editor-toolbar">
-			{props.options.map((option, idx) => (
-				<Icon isActive={option} index={idx} />
-			))}
-		</div>
-	)
-}
-
 // Different views to be displayed in EditingArea
 
 // This function serves as both deleted posts view and normal post list.
@@ -60,20 +29,27 @@ const PostGrid = () => {
 		time: "January 1, 1970 at 0:00"
 	}
 	let postList = [];
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 9; i++) {
 		postList.push(post);
 	}
+
+	// Icons for the small toolbar.
+	const toolbarIcons = [
+		<IconEdit />,
+		<IconTrashCan />
+	]
 
 	return (
 		<div className="editor-post-grid">
 		{postList.map((post) => (
 			<div className="editor-post-grid-item">
-				<h3>{post.title}</h3>
-				<p>{post.description}</p>
+				<div className="editor-post-grid-item-content">
+					<h3>{post.title}</h3>
+					<p>{post.description}</p>
+				</div>
 				<div className="editor-post-grid-item-bar">
-					<p>{post.date}</p>
-					<IconEdit />
-					<IconTrashCan />
+					<p>{post.time}</p>
+					<Toolbar icons={toolbarIcons} horizontal={true} />
 				</div>
 			</div>
 		))}
@@ -97,9 +73,13 @@ const EditingArea = (props) => {
 
 const NavButtons = (props) => {
 	return (
-		<div>
-			<IconNav onClick={props.actionPrev} />
-			<IconNav onClick={props.actionNext}/>
+		<div className="editor-nav">
+			<div>
+				<IconNav onClick={props.actionPrev} />
+			</div>
+			<div>
+				<IconNav onClick={props.actionNext}/>
+			</div>
 		</div>
 	)
 }
@@ -111,9 +91,35 @@ class Editor extends React.Component {
 		super(props);
 
 		this.state = {
-			// List that keeps track of which option is selected.
-			options: [true, false, false]
+			// This is currently open editor view.
+			selectedView: 0
 		}
+	}
+
+	toolbarIcons = [
+		<IconLanding />,
+		<IconEditor />,
+		<IconTrashCan />
+	];
+
+	toolbarIconsActive = [
+		<IconLandingActive	/>,
+		<IconEditorActive />,
+		<IconTrashCanActive />
+	];
+
+	// Generates a list of icons for the toolbar.
+	toolbarIconGen = () => {
+		let iconList = [...this.toolbarIcons];
+
+		for (let i = 0; i < iconList.length; i++) {
+			// If the icon matches selected view. Change it to an active icon.
+			if (this.state.selectedView === i) {
+				iconList[i] = this.toolbarIconsActive[i];
+			}
+		}
+
+		return iconList;
 	}
 
 	render() {
@@ -121,7 +127,10 @@ class Editor extends React.Component {
 			<div className="editor">
 				<Banner>Welcome back</Banner>
 				<div className="editor-content-area">
-					<Toolbar options={this.state.options}/>
+					<Toolbar
+						icons={this.toolbarIconGen()}
+						activeIdx={this.state.selectedView}
+					/>
 					<EditingArea />
 					<NavButtons />
 				</div>

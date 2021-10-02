@@ -1,0 +1,41 @@
+@import '../styles/colors';
+@import '../styles/sizings';
+
+@mixin toolbar-contents($holder-background, $holder-margin, $active-background, $icon-color) {
+  div {
+    display: flex;
+    justify-content: center;
+    margin: $holder-margin;
+    width: 3rem;
+    height: 3rem;
+    background-color: $holder-background;
+
+    &:hover {
+      background-color: $hover-ui-gray-100;
+    }
+  }
+
+  .icon-holder-active {
+    background-color: $active-background;
+
+    &:hover {
+      background-color: $active-background;
+    }
+
+    svg {
+      fill: $icon-color;
+    }
+  }
+}
+
+.editor-toolbar {
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
+  @include toolbar-contents($ui-01-gray-100, 0 0 1px 0, $active-secondary-gray-100, $text-05-gray-100);
+}
+
+.editor-toolbar-horizontal {
+  display: flex;
+  @include toolbar-contents($ui-02-gray-100, 0 1px 0 0, $active-secondary-gray-100, $text-02-gray-100);
+}

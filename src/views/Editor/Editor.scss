@@ -2,6 +2,11 @@
 @import '../../styles/text';
 @import '../../styles/sizings';
 
+svg {
+  width: 1.25rem;
+  height: auto;
+}
+
 .editor {
   padding: $standardPadding;
   color: $text-01-gray-100;
@@ -9,34 +14,71 @@
   background-color: $ui-background-gray-100;
 }
 
-.editor-toolbar {
+.editor-content-area {
+  display: grid;
+  grid-template-columns: 1fr 68rem 1fr;
+  align-items: center;
+}
+
+.editor-post-grid {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: $standardPadding;
+
+  .editor-post-grid-item {
+    display: flex;
+    flex-direction: column;
+    background-color: $ui-01-gray-100;
+
+    .editor-post-grid-item-content {
+      height: 8.5rem;
+      padding: 0.5rem;
+
+      h3 {
+        margin-top: 0;
+        @include heading-02;
+      }
+
+      p {
+        @include body-long-01;
+      }
+    }
+
+    .editor-post-grid-item-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      p {
+        margin: 0 0 0.5rem 0.5rem;
+        @include body-short-01;
+      }
+    }
+  }
+}
+
+.editor-nav {
+  height: 100%;
+  justify-self: end;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   div {
     display: flex;
     justify-content: center;
-    margin-bottom: 1px;
-    width: 3rem;
-    height: 3rem;
-    background-color: $ui-01-gray-100;
+    width: 5rem;
+    height: 5rem;
+    transform: rotate(-90deg);
 
-    &:hover {
-      background-color: $hover-ui-gray-100;
-    }
-
-    svg {
-      width: 1.25rem;
-      height: auto;
-      fill: $text-05-gray-100;
+    &:last-child {
+      transform: rotate(90deg);
     }
   }
 
-  .icon-holder-active {
-    background-color: $active-secondary-gray-100;
-
-    &:hover {
-      background-color: $active-secondary-gray-100;
-    }
+  svg {
+    width: 2.5rem;
+    height: auto;
+    fill: $interactive-02;
   }
 }
